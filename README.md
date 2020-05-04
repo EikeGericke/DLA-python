@@ -1,3 +1,9 @@
+# Forke from George Richards DLA-python repository
+The master can be found here: 
+https://github.com/georich/DLA-python/commit/e3ff681459e3400cf25868fbaddad618f1db4ea2
+
+Changes addes by Eike Gericke in 2020 to extract xyz coordinates from simulated 3D aggregates. 
+
 # DLA
 Diffusion Limited Aggregation
 
