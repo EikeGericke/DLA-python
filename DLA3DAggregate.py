@@ -7,10 +7,11 @@ from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 
 # Initial values and movements possible in 3D
-length = 200
-particleCap = 4001
-steps = 1000
-attempts = 10
+length = 100 #Difine the size of the simulation box in px
+particleCap = 501 #so many particles will be aggregated
+steps = 500 #maximum length of a particle walking path
+attempts = 40 #How many full runs to do
+
 # Imagining a cube, can move towards each face, corner or midpoint of each edge
 # listed in that order respectively
 movements = np.array([[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1],
@@ -193,6 +194,8 @@ for run in range(attempts):
         colourArrangement[n] = lattice[latticePlot[0][n],latticePlot[1][n],latticePlot[2][n]]
     ax.scatter(latticePlot[2],latticePlot[1],latticePlot[0],c=colourArrangement,cmap=cmap,marker='s')
     plt.title('FCM 3D Fractal no=%i' %(run+1))
+    # Save figure as PNG
+    fig.savefig("DLA_3D_PartN"+str(particleCap)+'_BoxL'+str(length)+"_Run"+str(run+1)+"_xyz.png")
     t1 = time.time()
     t2 = round((t1-t0)/60,1)
     print('Finished run', run+1, 'in', t2, 'minutes.')
