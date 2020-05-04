@@ -1,8 +1,10 @@
 # DLA 3D Aggregate, George Richards 4228068
+# Modifications for xyz coordinates export opportnity of simulated aggregates by Eike Gericke
 import numpy as np
 import matplotlib.pyplot as plt
 import time
 from mpl_toolkits.mplot3d import Axes3D
+import pandas as pd
 
 # Initial values and movements possible in 3D
 length = 200
@@ -166,6 +168,14 @@ for run in range(attempts):
 
     N, r = zip(*latticeRadiusData)
     dataStore[:,run] = r
+    
+     # Export the aggregate lattice
+    xyz_dictonary = {
+        'x': list(latticePlot[0]),
+        'y': list(latticePlot[1]),
+        'z': list(latticePlot[2])}
+    xyz_pd=pd.DataFrame(xyz_dictonary, columns = ['x', 'y', 'z'])
+    pd.DataFrame(xyz_pd).to_csv("DLA_3D_PartN"+str(particleCap)+'_BoxL'+str(length)+"_Run"+str(run+1)+"_xyz.csv")   
     
     # Record positions of the particles within the lattice
     latticePlot = np.nonzero(lattice)
